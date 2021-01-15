@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Models\Company;
 
 class CompanytController extends Controller
 {
@@ -13,7 +15,11 @@ class CompanytController extends Controller
      */
     public function index()
     {
-        //
+        $data=Company::paginate(10);
+        return response()->json([
+            'Message ' => 'Successfully found Company Listings ',
+            'Data' => $data
+        ]);
     }
 
     /**
@@ -32,9 +38,18 @@ class CompanytController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Response $response)
     {
-        //
+        $company = new Company;
+        $company->Name = $request->Name;
+        $company->Address = $request->Address;
+        $company->IndustryTitle = $request->IndustryTitle;
+
+        $company->save();
+
+        return response()->json([
+            'Message ' => 'Successfully Added Company Record '
+        ]);
     }
 
     /**
@@ -45,7 +60,23 @@ class CompanytController extends Controller
      */
     public function show($id)
     {
-        //
+        $company=Company::find($id);
+        if($company)
+        {
+            return response()->json([
+                'Message ' => 'Successfully found Company Record ',
+                'Data' => $company
+            ]);
+
+        }
+        else
+        {
+            return response()->json([
+                'Message ' => 'No Record Found '
+            ]);
+
+        }
+
     }
 
     /**
@@ -68,7 +99,38 @@ class CompanytController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::find($id);
+
+        if($company)
+        {
+            if($request->Name)
+            {
+                $company->Name = $request->Name;
+            }
+            if($request->Address)
+            {
+                $company->Address = $request->Address;
+            }
+            if($request->IndustryTitle)
+            {
+                $company->IndustryTitle = $request->IndustryTitle;
+            }
+
+            $company->save();
+
+            return response()->json([
+                'Message ' => 'Successfully Updated Company Record '
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'Message ' => 'No Record found against provided id '
+            ]);
+
+        }
+
+
     }
 
     /**
@@ -79,6 +141,16 @@ class CompanytController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::find($id);
+        if($company)
+        {
+            $company->delete();
+            return response()->json([
+                'Message ' => 'Deleted Successfully'
+            ]);
+        }
+        return response()->json([
+            'Message ' => 'No Record found against provided id '
+        ]);
     }
 }

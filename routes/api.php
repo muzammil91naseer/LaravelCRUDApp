@@ -16,11 +16,18 @@ use App\Http\Controllers\EmployeetController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+
+
+
+
 Route::resource('company', CompanytController::class);
 Route::resource('employee', EmployeetController::class);
+Route::middleware('api')->group(function () {
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get("test", function(){
+        return "test";
+    });
 });
-
 
