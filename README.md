@@ -1,10 +1,14 @@
 ## Instruction for running the project:
-Git Clone
-php artisan migrate
-php artisan db:seed
-npm install
-npm run dev
-Admin credentials required for CRUD operations.
+<p> Git Clone </p>
+<p> Create local DB </p>
+<p> Update .env </p>
+<p> php artisan migrate </p>
+<p> php artisan db:seed </p>
+<p> npm install </p>
+<p> npm run dev </p>
+<p> Admin credentials required for CRUD operations.</p>
+<p> Register </p>
+<p> Login </p>
 
 
 
