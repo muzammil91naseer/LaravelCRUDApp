@@ -1,4 +1,4 @@
-## Instruction for running the project:
+## Instructions for running the project:
 <p> Git Clone </p>
 <p> Create local DB </p>
 <p> Update .env </p>
