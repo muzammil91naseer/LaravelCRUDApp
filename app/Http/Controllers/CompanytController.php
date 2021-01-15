@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\Company;
 
 class CompanytController extends Controller
@@ -38,7 +37,7 @@ class CompanytController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Response $response)
+    public function store(Request $request)
     {
         $company = new Company;
         $company->Name = $request->Name;
