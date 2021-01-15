@@ -10,6 +10,8 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["Name","IndustryTitle","Address"];
+
     public function employees()
     {
         return $this->HasMany("App\Models\Employee");

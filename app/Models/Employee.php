@@ -9,6 +9,7 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["Name","Designation","Address","company_id"];
     public function company()
     {
         return $this->belongsTo("App\Models\Company");
