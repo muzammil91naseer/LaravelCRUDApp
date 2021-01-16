@@ -14,11 +14,8 @@ class CompanytController extends Controller
      */
     public function index()
     {
-        $data=Company::paginate(10);
-        return response()->json([
-            'Message ' => 'Successfully found Company Listings ',
-            'Data' => $data
-        ]);
+        $data=Company::with("employees")->paginate(2)->withQueryString();
+        return $data->toJson();
     }
 
     /**

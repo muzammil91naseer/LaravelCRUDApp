@@ -14,7 +14,7 @@ class EmployeetController extends Controller
      */
     public function index()
     {
-        $data=Employee::paginate(10);
+        $data=Employee::with("company")->paginate(10);
         return response()->json([
             'Message ' => 'Successfully found Employee Listings ',
             'Data' => $data

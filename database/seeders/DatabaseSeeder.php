@@ -8,6 +8,8 @@ use App\Models\Company;
 use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,10 +26,11 @@ class DatabaseSeeder extends Seeder
         Employee::query()->truncate();
 
         //insert admin data
+        $password = Hash::make('Doorhub123456');
         $admin = new User;
         $admin->name="Admin";
         $admin->email="admin@doorhub.io";
-        $admin->password="Doorhub123456";
+        $admin->password=$password;
         $admin->is_admin=true;
         $admin->save();
 
